@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "ArtGallery.agpOrth_inER",
+    "ArtGallery.agpOrth_inER_guard_variables",
+    "ArtGallery.agpOrth_erComplete",
+    "ArtGallery.agpOrthPointBoundary_inER",
+    "ArtGallery.agpOrthPointBoundary_inER_guard_variables",
+    "ArtGallery.agpOrthPointBoundary_erComplete"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -1,0 +1,248 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "The orthogonal art gallery problem is ∃ℝ-complete (point-point and point-boundary), in Lean 4"
+  description: >-
+    A Lean 4 formalization of material in a forthcoming manuscript entitled "The Orthogonal Art
+    Gallery Problem is ∃ℝ-complete". A Lean 4 and Mathlib proof, for an explicit single-tape
+    Turing machine model, that deciding
+    whether an orthogonal simple polygon (every edge horizontal or vertical) with rational
+    corners can be guarded by g guards is ∃ℝ-complete under polynomial-time many-one
+    reductions, both when the guards must see the whole polygon (point-point) and when they must
+    see only its boundary (point-boundary). Both problems also reduce to ETR by formulas whose
+    only variables are the 2g coordinates of the guards. As far as we could determine, hardness
+    for orthogonal polygons was open: it is treated neither by Abrahamsen, Adamaszek and Miltzow
+    (J. ACM 2021) nor by Stade (SoCG 2025). The hardness proof is a new construction derived
+    from Stade's polygon: needles become corridors, wedges become rectangles with needle
+    cutters, the slanted mouths of the copy nooks are kept through helper guards pinned by
+    four-armed crosses, and the addition gadgets are replaced by new orthogonal rooms. Its
+    visibility, pinning and coverage facts are checked by the kernel as certificates (cone
+    propagation with a symbolic height parameter, polynomial sign tests for the copy nooks,
+    coverage by convex items). The proofs use only the axioms propext, Classical.choice and
+    Quot.sound.
+  authors:
+    - "Robert D. Barish"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Robert D. Barish"
+
+classification:
+  arxiv: [cs.CG, cs.CC]
+  msc2020: [68U05, 68Q17, 14P10, 68V20]
+
+sources:
+  - title: "The Orthogonal Art Gallery Problem is ∃ℝ-complete"
+    authors:
+      - "Robert D. Barish"
+    type: paper
+    location: "Forthcoming manuscript; not included in this repository."
+    relationship: formalizes
+    note: >-
+      The orthogonal construction and the hardness and membership theorems for the point-point
+      and point-boundary variants.
+    author_endorsement: participated
+  - title: "The Point-Boundary Art Gallery Problem is ∃ℝ-hard"
+    authors:
+      - "Jack Stade"
+    type: paper
+    id: "arXiv:2210.12817v3"
+    location: "SoCG 2025, LIPIcs 332, Paper 74; full version arXiv:2210.12817. The paper is not included in this repository."
+    relationship: adapts
+    note: >-
+      The orthogonal construction is derived from Stade's polygon (ETR-INV-REV, guard regions,
+      copy nooks, inversion and addition gadgets), formalized with explicit coordinates of our
+      own. Orthogonal polygons are not treated in the paper.
+    license: "unknown"
+    author_endorsement: not-contacted
+  - title: "The Art Gallery Problem is ∃ℝ-complete"
+    authors:
+      - "Mikkel Abrahamsen"
+      - "Anna Adamaszek"
+      - "Tillmann Miltzow"
+    type: paper
+    location: "Journal of the ACM 69(1), Article 4 (2021); preliminary version STOC 2018. The paper is not included in this repository."
+    relationship: formalizes
+    note: >-
+      Used: the problem definitions, the reduction ETR → ETR-INV (§4) and the membership
+      argument (§3, Theorem 13), here in a form with 2g variables. Orthogonal polygons are not
+      treated in the paper.
+    license: "unknown"
+    author_endorsement: not-contacted
+  - title: "Irrational Guards are Sometimes Needed"
+    authors:
+      - "Mikkel Abrahamsen"
+      - "Anna Adamaszek"
+      - "Tillmann Miltzow"
+    type: paper
+    id: "arXiv:1701.05475"
+    location: "SoCG 2017"
+    relationship: background
+    note: >-
+      The method of pinning a helper guard to a point by a four-armed cross at an acute vertex
+      is adapted for the helper guards of the copy nooks.
+    author_endorsement: not-contacted
+  - title: "The existential theory of the reals as a complexity class: a compendium"
+    authors:
+      - "Marcus Schaefer"
+      - "Jean Cardinal"
+      - "Tillmann Miltzow"
+    type: paper
+    id: "arXiv:2407.18006"
+    location: "arXiv (2024)"
+    relationship: background
+    note: "Consulted for the status of the orthogonal problems; it does not list them."
+    author_endorsement: not-contacted
+
+related_formalizations:
+  - id: "https://palomar-registry.org/entry?id=PALOMAR-2026-10-27-000025&version=1"
+    relationship: builds-on
+    note: >-
+      Robert D. Barish, "The Art Gallery Problem is ∃ℝ-complete: point-point, boundary-point and
+      point-boundary variants, in Lean 4", Palomar, PALOMAR-2026-10-27-000025 v1. This
+      repository contains the part of that entry on which the orthogonal theorems depend (ETR
+      reductions, membership, Stade's construction, geometry and visibility library), with
+      comments naming development material reworded; the orthogonal problems and construction
+      are new. docs/PROVENANCE.md lists every Lean file.
+  - id: "https://palomar-registry.org/entry?id=PALOMAR-2026-10-02-000013&version=1"
+    relationship: builds-on
+    note: >-
+      Robert D. Barish, "NP-completeness of SAT, 3-SAT and their variants (the Cook–Levin theorem) in Lean 4", Palomar, PALOMAR-2026-10-02-000013 v1
+      (github.com/RBarish-UTokyo/NPCompleteness-Lean4, commit
+      3e603e795b44fedcf7d6dd65b7d1e30547ead925). Its machine model, classes and part of its
+      Complexity library are reused byte-identically; the statement inlines its machine model.
+  - id: "https://palomar-registry.org/entry?id=PALOMAR-2026-10-09-000010&version=1"
+    relationship: builds-on
+    note: >-
+      Robert D. Barish, "MaxSNP-completeness and APX-completeness of MAX-3-SAT and 3-OCCURRENCE MAX-3-SAT (the PCP theorem and hardness of approximation) in Lean 4", Palomar, PALOMAR-2026-10-09-000010 v1
+      (github.com/RBarish-UTokyo/Max3SAT-MaxSNP-APX-Lean4, commit
+      10079b2a14bd0df47d2a24364133f6008b9c207f). Its polynomial-time framework PT/ and the register
+      language of Complexity/Reg are reused byte-identically.
+  - id: "https://palomar-registry.org/entry?id=PALOMAR-2026-10-05-000003&version=2"
+    relationship: adapts
+    note: >-
+      Robert D. Barish, "Linear-Time Triangulation of Simple Polygons (Chazelle's Algorithm) in Lean 4", Palomar, PALOMAR-2026-10-05-000003 v2
+      (github.com/RBarish-UTokyo/LinearTimeTriangulation-ChazelleAlgorithm-Lean4, commit
+      92cc7745aa026aad3e80e7a72fe88cfbd909614a). The polygon definitions of its specification and
+      its planar-geometry, Jordan-curve, triangulation-existence and affine-invariance files are
+      adapted (namespace renamed, provenance note added to each file).
+
+status:
+  scope: >-
+    Proved: the six compared theorems for the definitions of Challenge.lean (∃ℝ-completeness of
+    the orthogonal point-point and point-boundary art gallery problems, their membership in ∃ℝ,
+    and membership by formulas in the 2g guard coordinates). On the way: the ETR → ETR-INV and
+    ETR → ETR-INV-REV reductions with their polynomial-time proofs; membership of the art
+    gallery problems in ∃ℝ with 2g variables; Stade's construction; the orthogonal construction
+    (simplicity, orthogonality, the region as a union of rectangles, counting with
+    kernel-checked visibility certificates, pinning of the helper guards, soundness,
+    completeness by coverage certificates, polynomial time, and the elimination of the
+    constraints x = 1); a library of visibility tools for polygons with verified certificate
+    checkers. Not covered: hardness of the boundary-point variant (guards on the boundary) for
+    orthogonal polygons.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+  main_results:
+    - declaration: ArtGallery.agpOrth_erComplete
+      file: ArtGallery/Orthogonal/MainTheorems.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+    - declaration: ArtGallery.agpOrthPointBoundary_erComplete
+      file: ArtGallery/Orthogonal/MainTheorems.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+    - declaration: ArtGallery.agpOrth_inER
+      file: ArtGallery/Orthogonal/MembershipMain.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+    - declaration: ArtGallery.agpOrth_inER_guard_variables
+      file: ArtGallery/Orthogonal/MembershipMain.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+    - declaration: ArtGallery.agpOrthPointBoundary_inER
+      file: ArtGallery/Orthogonal/MembershipMain.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+    - declaration: ArtGallery.agpOrthPointBoundary_inER_guard_variables
+      file: ArtGallery/Orthogonal/MembershipMain.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+
+automation:
+  methods:
+    - method: agent
+      models: ["Claude Opus 5.5 (Anthropic)"]
+      framework: "AI coding agents"
+      tool_setup: >-
+        Claude Opus 5.5 (Anthropic) was used, as agents under the direction of the author, both for the
+        Lean formalization and to assist with the documentation. The author set the task, the
+        target statements and the requirements. Tools: Lean v4.35.0-rc2 and Lake, Mathlib,
+        development programs with exact rational arithmetic (used to design and validate the
+        construction and to generate its data and certificate files; not part of this
+        repository), the toolchain's lake comparator and independent kernels.
+      cost:
+        wall_time: "not tracked"
+        spend_usd: "not tracked"
+        hardware: "cloud container"
+      prompting_notes: "n/a"
+  spend_usd: "not tracked"
+  notes: >-
+    The author directed the work. Claude Opus 5.5 (Anthropic) assisted with the Lean definitions,
+    statements, proofs, the development-time certificate generators (not part of this
+    repository; the generated Lean files are checked by the kernel), and the documentation
+    (README.md, this file, the Challenge.lean header, the notes in docs/ and the verification
+    record).
+    Reused files from the author's earlier entries are listed in docs/PROVENANCE.md.
+
+fidelity:
+  divergences: |-
+    - Machine model, polynomial time and reductions are those of PALOMAR-2026-10-02-000013: deterministic single-tape Turing machines over {blank, 0, 1, separator}, time = number of steps, polynomial bounds c * (n + 1)^k, polynomial-time many-one (Karp) reductions. ∃ℝ is the class of languages that reduce to ETR; invariance under other machine models is not proved.
+    - ETR formulas are quantifier-free formulas with constants 0, 1, operations +, −, · and relations =, <, ≤ under ¬, ∧, ∨, read existentially; variable indices are coded in unary. Art gallery instances are coded with numerators, denominators and g in binary.
+    - Polygons are lists of corners; simple means at least three distinct corners and any two distinct edges meeting exactly in common endpoints (collinear consecutive corners allowed); orthogonal means every edge is horizontal or vertical. The region is the boundary plus the bounded components of its complement; seeing means the closed segment lies in the region. The problems ask for a guard set with exactly g points, which is equivalent to at most g points since guards can be added.
+    - The orthogonal problems are not treated in the sources; AGPOrth and AGPOrthPointBoundary are the restrictions of the point-point problem of [AAM] and of the point-boundary problem of [S] to orthogonal polygons. Hardness is proved by a construction of our own (the forthcoming manuscript): Stade's polygon with every non-axis-parallel edge replaced, extra helper guards counted in the guard number, and a preprocessing step that replaces each constraint x = 1 by x · x ≥ 1 and x + x ≤ y with a fresh variable y.
+    - Stade's construction is formalized with explicit coordinates designed for the formalization rather than the coordinates of the paper.
+
+review:
+  status: agent-reviewed
+  reviewers:
+    - "Claude Opus 5.5 (Anthropic)"
+  notes: >-
+    The Challenge statement was checked against the definitions of the sources during the
+    AI-assisted development. The proof is checked by the Lean kernel, and Comparator verifies
+    that the solution proves the challenge statement using only the permitted axioms
+    (docs/VERIFICATION.md). No human mathematical review or Palomar editorial review is
+    asserted.
+
+alignment:
+  namespace: "ArtGallery"
+  statements:
+    - source: "[Manuscript] the orthogonal art gallery problem (point-point) is ∃ℝ-complete"
+      lean: "ArtGallery.agpOrth_erComplete"
+      module: "Solution"
+      status: proved
+      note: "The main theorem of the forthcoming manuscript; orthogonal construction of that manuscript."
+    - source: "[Manuscript] the orthogonal point-boundary art gallery problem is ∃ℝ-complete"
+      lean: "ArtGallery.agpOrthPointBoundary_erComplete"
+      module: "Solution"
+      status: proved
+      note: "Same construction as for the point-point variant."
+    - source: "Membership of the two orthogonal variants in ∃ℝ ([AAM] Theorem 13 restricted to orthogonal polygons)"
+      lean: "ArtGallery.agpOrth_inER, ArtGallery.agpOrthPointBoundary_inER"
+      module: "Solution"
+      status: proved
+    - source: "[AAM] §7.2 open problem on the number of variables, for orthogonal polygons"
+      lean: "ArtGallery.agpOrth_inER_guard_variables, ArtGallery.agpOrthPointBoundary_inER_guard_variables"
+      module: "Solution"
+      status: proved
+      note: "2g variables (the guard coordinates) suffice."
+
+acknowledgements: >-
+  Mathlib and the Lean community; the Lean FRO for Comparator, lean4export and the toolchain's
+  independent kernels.
